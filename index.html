@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forza 4 - Gioco Online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Forza 4 Online</h1>
+            <div id="user-info" class="user-info" style="display: none;">
+                <span id="username-display"></span>
+                <button id="logout-btn" class="btn btn-secondary">Esci</button>
+            </div>
+        </header>
+
+        <!-- Schermata di Login/Registrazione -->
+        <div id="auth-screen" class="screen active">
+            <div class="auth-container">
+                <h2>Benvenuto!</h2>
+                <p>Inserisci il tuo username per iniziare a giocare</p>
+                <input type="text" id="username-input" placeholder="Username" maxlength="20">
+                <button id="login-btn" class="btn btn-primary">Inizia a Giocare</button>
+                <div id="auth-error" class="error-message"></div>
+            </div>
+        </div>
+
+        <!-- Schermata Lobby -->
+        <div id="lobby-screen" class="screen">
+            <div class="lobby-container">
+                <h2>Lobby</h2>
+                
+                <div class="lobby-actions">
+                    <button id="create-game-btn" class="btn btn-primary">Crea Nuova Partita</button>
+                    <button id="refresh-games-btn" class="btn btn-secondary">Aggiorna</button>
+                </div>
+
+                <div class="games-section">
+                    <h3>Partite Disponibili</h3>
+                    <div id="available-games" class="games-list">
+                        <p class="loading">Caricamento partite...</p>
+                    </div>
+                </div>
+
+                <div class="games-section">
+                    <h3>Le Mie Partite</h3>
+                    <div id="my-games" class="games-list">
+                        <p class="loading">Caricamento...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Schermata di Gioco -->
+        <div id="game-screen" class="screen">
+            <div class="game-container">
+                <div class="game-header">
+                    <button id="back-to-lobby-btn" class="btn btn-secondary">← Torna alla Lobby</button>
+                    <h2 id="game-title">Partita in corso</h2>
+                </div>
+
+                <div class="game-info">
+                    <div class="player-info player-1">
+                        <div class="player-color red"></div>
+                        <span id="player1-name">Giocatore 1</span>
+                        <span class="player-status" id="player1-status"></span>
+                    </div>
+                    
+                    <div class="turn-indicator">
+                        <div id="turn-message">In attesa del secondo giocatore...</div>
+                        <div id="timer-container" style="display: none;">
+                            <div class="timer-label">Tempo rimasto:</div>
+                            <div class="progress-bar">
+                                <div id="timer-progress" class="progress-fill"></div>
+                            </div>
+                            <div id="timer-seconds" class="timer-seconds">5s</div>
+                        </div>
+                    </div>
+
+                    <div class="player-info player-2">
+                        <div class="player-color yellow"></div>
+                        <span id="player2-name">In attesa...</span>
+                        <span class="player-status" id="player2-status"></span>
+                    </div>
+                </div>
+
+                <div id="game-board" class="game-board">
+                    <!-- Griglia 7 colonne x 6 righe -->
+                    <div class="board-grid">
+                        <div class="column-buttons">
+                            <button class="column-btn" data-column="0"></button>
+                            <button class="column-btn" data-column="1"></button>
+                            <button class="column-btn" data-column="2"></button>
+                            <button class="column-btn" data-column="3"></button>
+                            <button class="column-btn" data-column="4"></button>
+                            <button class="column-btn" data-column="5"></button>
+                            <button class="column-btn" data-column="6"></button>
+                        </div>
+                        <div class="board-cells">
+                            <!-- Le celle saranno generate dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <div id="game-message" class="game-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Import dei moduli JavaScript -->
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
