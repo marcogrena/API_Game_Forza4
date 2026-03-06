@@ -279,17 +279,20 @@ export class GameController {
     async makeRandomMove() {
         this.stopTurnTimer();
         
-        const moveResult = this.board.makeRandomMove();
+        // Scegli solo una colonna casuale disponibile
+        const availableColumns = this.board.getAvailableColumns();
         
-        if (!moveResult.success) {
-            console.error('Cannot make random move');
+        if (availableColumns.length === 0) {
+            console.error('Cannot make random move: no columns available');
             return;
         }
         
-        this.ui.showGameMessage('Tempo scaduto! Mossa casuale effettuata.', 'info');
+        const randomCol = availableColumns[Math.floor(Math.random() * availableColumns.length)];
         
-        // Continua come una mossa normale
-        await this.makeMove(moveResult.col);
+        this.ui.showGameMessage('⏱️ Tempo scaduto! Mossa casuale effettuata.', 'info');
+        
+        // Effettua la mossa normalmente (gestisce tutto il flusso)
+        await this.makeMove(randomCol);
     }
 
     /**
